@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login | Akalya's Bridal Studio</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+
+  <!-- Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --ivory: #FAF7F2;
+      --sand: #ebd7c3;
+      --rosegold: #C89B6D;
+      --champagne: #D8B98A;
+      --charcoal: #111111;
+      --white: #ffffff;
+      --danger: #c62828;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--ivory);
+      color: var(--charcoal);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .login-container {
+      width: 100%;
+      max-width: 400px;
+      background: var(--white);
+      border-radius: 24px;
+      padding: 45px 35px;
+      box-shadow: 0 12px 40px rgba(200, 155, 109, 0.12);
+      border: 1px solid rgba(200, 155, 109, 0.2);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .login-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--rosegold), var(--champagne));
+    }
+
+    .login-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.3rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 6px;
+    }
+
+    .login-logo span {
+      color: var(--rosegold);
+    }
+
+    .login-subtitle {
+      font-size: 0.82rem;
+      color: #666;
+      margin-bottom: 30px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .form-group {
+      margin-bottom: 22px;
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      font-size: 0.88rem;
+      color: #444;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid rgba(200, 155, 109, 0.35);
+      border-radius: 10px;
+      background-color: var(--ivory);
+      font-family: inherit;
+      color: var(--charcoal);
+      outline: none;
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
+    }
+
+    input[type="email"]:focus,
+    input[type="password"]:focus {
+      border-color: var(--rosegold);
+      background-color: var(--white);
+      box-shadow: 0 0 8px rgba(200, 155, 109, 0.15);
+    }
+
+    /* Error display box */
+    .error-box {
+      background-color: rgba(198, 40, 40, 0.08);
+      border: 1px solid rgba(198, 40, 40, 0.2);
+      color: var(--danger);
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      margin-bottom: 20px;
+      font-weight: 500;
+      display: none;
+      align-items: center;
+      gap: 8px;
+      justify-content: center;
+      animation: shake 0.3s ease;
+    }
+
+    @keyframes shake {
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      25% {
+        transform: translateX(-6px);
+      }
+
+      75% {
+        transform: translateX(6px);
+      }
+    }
+
+    .btn-login {
+      width: 100%;
+      background: linear-gradient(135deg, var(--rosegold), var(--champagne));
+      color: var(--white);
+      border: none;
+      padding: 14px 20px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(200, 155, 109, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .btn-login:hover {
+      box-shadow: 0 6px 20px rgba(200, 155, 109, 0.3);
+      transform: translateY(-1px);
+    }
+
+    .btn-login:disabled {
+      background: #ccc;
+      box-shadow: none;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .footer-link {
+      margin-top: 25px;
+      display: block;
+      color: var(--rosegold);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .footer-link:hover {
+      color: var(--charcoal);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="login-container">
+    <h2 class="login-logo">Studio <span>Admin</span></h2>
+    <p class="login-subtitle">Akalya's Bridal Studio</p>
+
+    <!-- File Protocol Information Box -->
+    <div id="file-warning-box"
+      style="display: none; background-color: #fff3cd; border: 1px solid #ffeeba; color: #856404; padding: 14px 16px; border-radius: 12px; font-size: 0.85rem; margin-bottom: 20px; text-align: center; line-height: 1.5;">
+      <div style="font-weight: 600; margin-bottom: 8px;">
+        <i class="bx bx-info-circle"></i> You opened this page directly from a file. Start the server and open
+        http://localhost:5000/admin.html.
+      </div>
+      <a href="http://localhost:5000/admin.html" class="btn-login"
+        style="display: inline-block; width: auto; padding: 8px 16px; font-size: 0.82rem; text-decoration: none; margin-top: 6px; background: #856404; color: #ffffff;">Open
+        Admin via Server</a>
+    </div>
+
+    <div id="login-store-status"
+      style="margin-bottom: 20px; font-size: 0.82rem; font-weight: 600; padding: 6px 14px; border-radius: 999px; display: inline-flex; align-items: center; gap: 6px; background: rgba(200, 155, 109, 0.1); color: var(--charcoal);">
+      <i class="bx bx-loader-alt bx-spin"></i> Checking Store Status...
+    </div>
+
+    <!-- Dynamic Error Box -->
+    <div class="error-box" id="error-box">
+      <i class="bx bx-error-circle text-lg"></i>
+      <span id="error-message">Error message</span>
+    </div>
+
+    <form id="login-form">
+      <div class="form-group">
+        <label for="login-email">Email Address</label>
+        <input type="email" id="login-email" required autocomplete="username">
+      </div>
+      <div class="form-group">
+        <label for="login-password">Password</label>
+        <input type="password" id="login-password" required autocomplete="current-password">
+      </div>
+      <button type="submit" class="btn-login" id="submit-btn">Verify Credentials</button>
+    </form>
+
+    <a href="index.html" class="footer-link">
+      <i class="bx bx-left-arrow-alt"></i> Back to Studio Site
+    </a>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+
+</html>

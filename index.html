@@ -1,0 +1,1742 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script>
+    if (sessionStorage.getItem('visited')) {
+      document.documentElement.classList.add('no-loader');
+    }
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Akalya's Bridal Studio | Where Beauty Meets Elegance — Luxury Bridal Makeup Artist</title>
+  <meta name="description"
+    content="Akalya's Bridal Studio is a premier luxury bridal makeup and styling studio offering bridal makeup, engagement looks, HD & airbrush makeup, hair styling, saree draping and facial treatments. Book your consultation today.">
+  <meta name="keywords"
+    content="bridal makeup, bridal studio, engagement makeup, HD makeup, airbrush makeup, hair styling, saree draping, makeup artist">
+  <meta name="author" content="Akalya's Bridal Studio">
+  <meta property="og:title" content="Akalya's Bridal Studio | Where Beauty Meets Elegance">
+  <meta property="og:description"
+    content="Luxury bridal makeup, hair styling and beauty services crafted with premium artistry.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#111111">
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='75' x='10' font-size='70' font-family='Georgia,serif' fill='%23C89B6D'%3EA%3C/text%3E%3C/svg%3E">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&family=Poppins:wght@200;300;400;500;600;700&family=Cormorant+Garamond:ital@1&display=swap"
+    rel="stylesheet">
+
+  <!-- Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.4/css/all.min.css"
+    integrity="sha512-dphP0X3vS3J+R5MPo8S053CqG9gKmaE0P5YntM/abvKZZw5h9m8/BOUrD5wZAMRZwKVb8Fw2Jvhu6VY+ZokF6Q=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Swiper -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+  <!-- Tailwind (Play CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ivory: '#FAF7F2',
+            rosegold: '#C89B6D',
+            champagne: '#D8B98A',
+            charcoal: '#111111',
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'serif'],
+            body: ['"Poppins"', 'sans-serif'],
+            accent: ['"Cormorant Garamond"', 'serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --rosegold: #C89B6D;
+      --champagne: #D8B98A;
+      --ivory: #FAF7F2;
+      --charcoal: #111111;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: auto;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--ivory);
+      color: var(--charcoal);
+      overflow-x: hidden;
+      cursor: default;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    .font-display {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .font-accent {
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    ::selection {
+      background: var(--rosegold);
+      color: #fff;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--ivory);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, var(--champagne), var(--rosegold));
+      border-radius: 10px;
+    }
+
+    /* ===== Loading Screen ===== */
+    .no-loader #loader {
+      display: none !important;
+    }
+
+    #loader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: var(--charcoal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity .8s ease, visibility .8s ease;
+    }
+
+    #loader .mono {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 10vw, 6rem);
+      color: var(--champagne);
+      letter-spacing: .15em;
+      position: relative;
+      opacity: 0;
+    }
+
+    #loader .mono::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: -14px;
+      transform: translateX(-50%);
+      width: 0;
+      height: 1px;
+      background: var(--champagne);
+      animation: loaderline 1.6s ease-in-out forwards .4s;
+    }
+
+    @keyframes loaderline {
+      to {
+        width: 120px;
+      }
+    }
+
+    #loader.done {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    /* ===== Cursor Glow ===== */
+    #cursor-glow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 40;
+      background: radial-gradient(circle, rgba(200, 155, 109, .13) 0%, rgba(200, 155, 109, 0) 70%);
+      transform: translate(-50%, -50%);
+      transition: opacity .3s ease;
+      opacity: 0;
+    }
+
+    @media (min-width:1024px) {
+      #cursor-glow {
+        opacity: 1;
+      }
+    }
+
+    /* ===== Scroll Progress ===== */
+    #scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--rosegold), var(--champagne));
+      z-index: 9998;
+      transition: width .1s ease-out;
+    }
+
+    /* ===== Glass Nav ===== */
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 22px 0;
+      transition: all .5s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    #navbar.scrolled {
+      padding: 10px 0;
+    }
+
+    .nav-glass {
+      background: rgba(255, 255, 255, .55);
+      backdrop-filter: blur(18px) saturate(160%);
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
+      border: 1px solid rgba(255, 255, 255, .5);
+      box-shadow: 0 8px 32px rgba(17, 17, 17, .06);
+    }
+
+    #navbar.scrolled .nav-glass {
+      background: rgba(255, 255, 255, .75);
+      box-shadow: 0 8px 32px rgba(17, 17, 17, .1);
+    }
+
+    .nav-pill {
+      position: relative;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: .85rem;
+      letter-spacing: .04em;
+      color: var(--charcoal);
+      transition: all .35s ease;
+      white-space: nowrap;
+    }
+
+    .nav-pill::after {
+      content: '';
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 6px;
+      height: 1px;
+      background: var(--rosegold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .35s ease;
+    }
+
+    .nav-pill:hover {
+      background: rgba(200, 155, 109, .14);
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 6px 18px rgba(200, 155, 109, .25);
+    }
+
+    .nav-pill:hover::after {
+      transform: scaleX(1);
+    }
+
+    .nav-pill.active {
+      background: linear-gradient(135deg, var(--rosegold), var(--champagne));
+      color: #fff;
+      box-shadow: 0 6px 18px rgba(200, 155, 109, .4);
+    }
+
+    .nav-pill.active::after {
+      display: none;
+    }
+
+    .nav-dropdown {
+      position: relative;
+    }
+
+    .nav-dropdown-menu {
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%) translateY(6px);
+      min-width: 250px;
+      padding: 10px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, .22);
+      backdrop-filter: blur(22px) saturate(180%);
+      -webkit-backdrop-filter: blur(22px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, .35);
+      box-shadow: 0 20px 50px rgba(17, 17, 17, .18);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: all .25s ease;
+      z-index: 1200;
+    }
+
+    .nav-dropdown.open .nav-dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .nav-dropdown-menu a {
+      padding: 12px 14px;
+      border-radius: 14px;
+      color: var(--charcoal);
+      font-size: .9rem;
+      font-weight: 700;
+      background: rgba(255, 255, 255, .24);
+      border: 1px solid rgba(255, 255, 255, .24);
+      transition: all .3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-dropdown-menu a:hover {
+      background: linear-gradient(135deg, rgba(255, 255, 255, .38), rgba(200, 155, 109, .16));
+      color: var(--rosegold);
+      transform: translateX(3px) translateY(-1px);
+      box-shadow: 0 8px 20px rgba(200, 155, 109, .16);
+    }
+
+    @media (max-width:1023px) {
+      .nav-dropdown {
+        display: none;
+      }
+    }
+
+    .btn-ripple {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ripple-span {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .5);
+      transform: scale(0);
+      animation: ripple-anim .6s linear;
+      pointer-events: none;
+    }
+
+    @keyframes ripple-anim {
+      to {
+        transform: scale(3);
+        opacity: 0;
+      }
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--rosegold), var(--champagne));
+      color: #fff;
+      font-weight: 500;
+      letter-spacing: .03em;
+      border-radius: 999px;
+      padding: 16px 38px;
+      transition: all .4s cubic-bezier(.4, 0, .2, 1);
+      box-shadow: 0 10px 30px rgba(200, 155, 109, .35);
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(200, 155, 109, .5);
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(17, 17, 17, .25);
+      color: var(--charcoal);
+      border-radius: 999px;
+      padding: 16px 38px;
+      font-weight: 500;
+      letter-spacing: .03em;
+      transition: all .4s ease;
+      background: rgba(255, 255, 255, .4);
+      backdrop-filter: blur(6px);
+    }
+
+    .btn-outline:hover {
+      background: var(--charcoal);
+      color: #fff;
+      border-color: var(--charcoal);
+      transform: translateY(-4px);
+    }
+
+    /* Mobile menu */
+    #mobile-menu {
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100vh;
+      width: min(85vw, 380px);
+      background: rgba(17, 17, 17, .97);
+      backdrop-filter: blur(20px);
+      transform: translateX(100%);
+      transition: transform .55s cubic-bezier(.65, 0, .35, 1);
+      z-index: 1100;
+    }
+
+    #mobile-menu.open {
+      transform: translateX(0);
+    }
+
+    #menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .4);
+      z-index: 1050;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .4s ease;
+    }
+
+    #menu-overlay.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* ===== Hero ===== */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--charcoal);
+    }
+
+    #hero-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 110%;
+      background-size: cover;
+      background-position: center;
+      background-image: linear-gradient(180deg, rgba(17, 17, 17, .55), rgba(17, 17, 17, .75)), url('A1.jpg');
+      will-change: transform;
+    }
+
+    .hero-float {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(216, 185, 138, .35), transparent 70%);
+      filter: blur(2px);
+      pointer-events: none;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: #fff;
+      opacity: .8;
+    }
+
+    .scroll-mouse {
+      width: 26px;
+      height: 42px;
+      border: 1.5px solid rgba(255, 255, 255, .7);
+      border-radius: 16px;
+      position: relative;
+    }
+
+    .scroll-mouse::before {
+      content: '';
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 3px;
+      height: 8px;
+      background: var(--champagne);
+      border-radius: 4px;
+      animation: scrolldot 1.6s ease infinite;
+    }
+
+    @keyframes scrolldot {
+      0% {
+        opacity: 1;
+        top: 8px;
+      }
+
+      100% {
+        opacity: 0;
+        top: 22px;
+      }
+    }
+
+    /* ===== Glass Card ===== */
+    .glass-card {
+      background: rgba(255, 255, 255, .55);
+      backdrop-filter: blur(16px) saturate(160%);
+      -webkit-backdrop-filter: blur(16px) saturate(160%);
+      border: 1px solid rgba(255, 255, 255, .6);
+      box-shadow: 0 8px 30px rgba(17, 17, 17, .06);
+    }
+
+    .main-site {
+      transition: opacity .35s ease, transform .35s ease;
+    }
+
+    .main-site.is-hidden {
+      display: none;
+    }
+
+    .bridal-view {
+      display: none;
+      min-height: 100vh;
+      padding: 120px 24px 60px;
+      background: linear-gradient(135deg, #fffaf5 0%, #f7eae0 100%);
+    }
+
+    .bridal-view.active {
+      display: block;
+      animation: fadeInUp .6s ease;
+    }
+
+    .bridal-shell {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, .62);
+      backdrop-filter: blur(18px) saturate(160%);
+      border: 1px solid rgba(255, 255, 255, .65);
+      border-radius: 30px;
+      box-shadow: 0 22px 50px rgba(17, 17, 17, .12);
+      overflow: hidden;
+    }
+
+    .bridal-hero {
+      padding: 44px 32px 32px;
+      background: linear-gradient(120deg, rgba(200, 155, 109, .22), rgba(216, 185, 138, .08));
+    }
+
+    .service-card {
+      background: rgba(255, 255, 255, .9);
+      border: 1px solid rgba(200, 155, 109, .16);
+      border-radius: 22px;
+      padding: 22px;
+      box-shadow: 0 14px 30px rgba(17, 17, 17, .06);
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 34px rgba(17, 17, 17, .12);
+    }
+
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(200, 155, 109, .2), rgba(216, 185, 138, .3));
+      color: var(--rosegold);
+      font-size: 1.2rem;
+      margin-bottom: 14px;
+    }
+
+    .service-card-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+      width: 100%;
+    }
+
+    .btn-service-book, .btn-service-wa {
+      flex: 1 1 calc(50% - 4px);
+      min-width: 125px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      box-sizing: border-box;
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    .btn-service-book {
+      background: linear-gradient(135deg, var(--rosegold), var(--champagne));
+      color: #ffffff;
+      border: 1px solid var(--rosegold);
+      box-shadow: 0 4px 12px rgba(200, 155, 109, 0.25);
+    }
+
+    .btn-service-book:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(200, 155, 109, 0.4);
+      filter: brightness(1.05);
+      color: #ffffff;
+    }
+
+    .btn-service-book:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    .btn-service-wa {
+      background: #25D366;
+      color: #ffffff;
+      border: 1px solid #25D366;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
+    }
+
+    .btn-service-wa:hover {
+      background: #20bd5a;
+      border-color: #20bd5a;
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+    }
+
+    .btn-service-wa:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ===== Counters ===== */
+    .counter-num {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* ===== Gallery ===== */
+    .gallery-filter-btn {
+      padding: 10px 24px;
+      border-radius: 999px;
+      font-size: .82rem;
+      letter-spacing: .03em;
+      border: 1px solid rgba(17, 17, 17, .15);
+      transition: all .35s ease;
+    }
+
+    .gallery-filter-btn.active {
+      background: var(--charcoal);
+      color: #fff;
+      border-color: var(--charcoal);
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      cursor: pointer;
+      break-inside: avoid;
+      margin-bottom: 16px;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      display: block;
+      transition: transform .8s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.12);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(17, 17, 17, 0) 40%, rgba(17, 17, 17, .85));
+      display: flex;
+      align-items: flex-end;
+      padding: 20px;
+      opacity: 0;
+      transition: opacity .5s ease;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .masonry {
+      column-count: 1;
+      column-gap: 16px;
+    }
+
+    @media(min-width:640px) {
+      .masonry {
+        column-count: 2;
+      }
+    }
+
+    @media(min-width:1024px) {
+      .masonry {
+        column-count: 3;
+      }
+    }
+
+    #lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(17, 17, 17, .95);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    #lightbox.open {
+      display: flex;
+    }
+
+    #lightbox img {
+      max-width: 90vw;
+      max-height: 82vh;
+      border-radius: 12px;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, .5);
+    }
+
+    /* ===== Pricing ===== */
+    .price-card {
+      border-radius: 28px;
+      padding: 46px 34px;
+      background: #fff;
+      border: 1px solid rgba(17, 17, 17, .08);
+      transition: all .5s cubic-bezier(.4, 0, .2, 1);
+      position: relative;
+    }
+
+    .price-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 30px 60px rgba(17, 17, 17, .1);
+    }
+
+    .price-card.featured {
+      background: linear-gradient(160deg, var(--charcoal), #1c1c1c);
+      color: #fff;
+      transform: scale(1.05);
+      box-shadow: 0 30px 70px rgba(200, 155, 109, .35);
+    }
+
+    .price-card.featured:hover {
+      transform: scale(1.07) translateY(-12px);
+    }
+
+    .price-badge {
+      position: absolute;
+      top: -16px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, var(--rosegold), var(--champagne));
+      color: #fff;
+      font-size: .72rem;
+      letter-spacing: .1em;
+      padding: 7px 20px;
+      border-radius: 999px;
+      box-shadow: 0 8px 20px rgba(200, 155, 109, .4);
+    }
+
+    /* ===== Testimonials ===== */
+    .testi-card {
+      background: rgba(255, 255, 255, .7);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(200, 155, 109, .2);
+      border-radius: 24px;
+      padding: 40px;
+      height: 100%;
+    }
+
+    .swiper-button-next.testi-next,
+    .swiper-button-prev.testi-prev {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #fff;
+      color: var(--rosegold);
+      box-shadow: 0 8px 20px rgba(17, 17, 17, .1);
+    }
+
+    .swiper-button-next.testi-next::after,
+    .swiper-button-prev.testi-prev::after {
+      font-size: 16px;
+    }
+
+    .swiper-pagination-bullet-active {
+      background: var(--rosegold) !important;
+    }
+
+    /* ===== Form ===== */
+    .form-field {
+      position: relative;
+      margin-bottom: 8px;
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid rgba(255, 255, 255, .2);
+      padding: 16px 6px 12px;
+      font-family: 'Poppins', sans-serif;
+      font-size: .95rem;
+      color: #fff;
+      outline: none;
+      transition: all .4s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    .form-field select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.6)' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 6px center;
+      background-size: 20px;
+      padding-right: 32px;
+      cursor: pointer;
+    }
+
+    .form-field select option {
+      background: #1a1a1a;
+      color: #fff;
+      padding: 10px;
+    }
+
+    .form-field select option:hover {
+      background: #333;
+    }
+
+    .form-field label {
+      position: absolute;
+      left: 6px;
+      top: 16px;
+      color: rgba(255, 255, 255, .5);
+      font-size: .95rem;
+      transition: all .3s ease;
+      pointer-events: none;
+      letter-spacing: .02em;
+    }
+
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      border-bottom-color: var(--rosegold);
+      box-shadow: 0 4px 16px rgba(200, 155, 109, .25);
+    }
+
+    .form-field input:focus~label,
+    .form-field select:focus~label,
+    .form-field input:not(:placeholder-shown)~label,
+    .form-field select:not(:placeholder-shown)~label,
+    .form-field textarea:focus~label,
+    .form-field textarea:not(:placeholder-shown)~label {
+      top: -6px;
+      font-size: .75rem;
+      color: var(--champagne);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .form-field .underline-bar {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 2px;
+      width: 0;
+      background: linear-gradient(90deg, var(--rosegold), var(--champagne));
+      transition: width .4s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    .form-field input:focus~.underline-bar,
+    .form-field select:focus~.underline-bar,
+    .form-field textarea:focus~.underline-bar {
+      width: 100%;
+    }
+
+    .form-field.error input,
+    .form-field.error select,
+    .form-field.error textarea {
+      border-bottom-color: #ff6b6b;
+    }
+
+    .form-error-msg {
+      color: #ff6b6b;
+      font-size: .8rem;
+      margin-top: 6px;
+      display: none;
+      animation: slideInUp .3s ease;
+    }
+
+    .form-field.error .form-error-msg {
+      display: block;
+    }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(4px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Reveal helper (used with GSAP) */
+    .reveal-up {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+
+    .floaty {
+      animation: floaty 6s ease-in-out infinite;
+    }
+
+    @keyframes floaty {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-18px);
+      }
+    }
+
+    .divider-orn {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--rosegold), transparent);
+    }
+
+    .whatsapp-fab {
+      position: fixed;
+      bottom: 26px;
+      left: 26px;
+      z-index: 500;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: #25D366;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      box-shadow: 0 10px 30px rgba(37, 211, 102, .5);
+      transition: all .4s cubic-bezier(.4, 0, .2, 1);
+      text-decoration: none;
+    }
+
+    .whatsapp-fab:hover {
+      transform: scale(1.15) translateY(-4px);
+      box-shadow: 0 16px 48px rgba(37, 211, 102, .7), 0 0 30px rgba(37, 211, 102, .4);
+    }
+
+    /* Instagram floating action button added above WhatsApp button */
+    .instagram-fab {
+      position: fixed;
+      bottom: 94px;
+      left: 26px;
+      z-index: 500;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      box-shadow: 0 10px 30px rgba(214, 41, 118, .4);
+      transition: all .4s cubic-bezier(.4, 0, .2, 1);
+      text-decoration: none;
+    }
+
+    .instagram-fab:hover {
+      transform: scale(1.15) translateY(-4px);
+      box-shadow: 0 16px 48px rgba(214, 41, 118, .6), 0 0 30px rgba(214, 41, 118, .3);
+    }
+
+    #backToTop {
+      position: fixed;
+      bottom: 26px;
+      right: 26px;
+      z-index: 500;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--charcoal);
+      color: var(--champagne);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(20px);
+      transition: all .4s ease;
+      font-size: 1.3rem;
+    }
+
+    #backToTop.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    #backToTop:hover {
+      background: var(--rosegold);
+      color: #fff;
+    }
+
+    .link-underline {
+      position: relative;
+    }
+
+    .link-underline::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 1px;
+      background: var(--champagne);
+      transition: width .35s ease;
+    }
+
+    .link-underline:hover::after {
+      width: 100%;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: .001ms !important;
+        transition-duration: .001ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-ivory text-charcoal font-body antialiased">
+
+  <!-- ================= LOADER ================= -->
+  <div id="loader">
+    <div class="mono">Akalya's</div>
+  </div>
+
+  <!-- ================= CURSOR GLOW ================= -->
+  <div id="cursor-glow"></div>
+
+  <!-- ================= SCROLL PROGRESS ================= -->
+  <div id="scroll-progress"></div>
+
+  <!-- ================= NAVBAR ================= -->
+  <header id="navbar">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 flex items-center justify-between">
+      <div class="flex items-center gap-4 z-10">
+        <a href="#home" class="font-display text-xl md:text-2xl tracking-wide flex items-center gap-2">
+          <span class="text-rosegold">A</span>kalya<span class="text-rosegold">'</span>s
+          <span class="hidden sm:inline text-[.65rem] tracking-[.25em] font-body uppercase text-charcoal/50 ml-1">Bridal
+            Studio</span>
+        </a>
+
+        <!-- Top visible status button -->
+        <div id="top-store-status"
+          class="nav-glass text-xs font-semibold px-3.5 py-1.5 rounded-full flex items-center gap-1.5 select-none transition-all duration-300 shadow-md">
+          Loading...
+        </div>
+      </div>
+
+      <nav class="nav-glass hidden lg:flex items-center gap-1 rounded-full px-2 py-2" id="desktop-nav">
+        <a href="#home" class="nav-pill active" data-nav>Home</a>
+        <a href="#about" class="nav-pill" data-nav>About</a>
+        <div class="nav-dropdown" id="bridal-services-dropdown">
+          <button type="button" class="nav-pill" id="bridal-services-toggle">Services</button>
+          <div class="nav-dropdown-menu" id="bridal-services-menu">
+            <a href="bridal.html">Bridal Makeup</a>
+            <a href="parlours.html">Parlours</a>
+            <a href="tailoring.html">Aari Work &amp; Tailoring</a>
+            <a href="fashion-designing.html">Fashion Designing</a>
+            <a href="boutique.html">Boutique</a>
+          </div>
+        </div>
+        <a href="#gallery" class="nav-pill" data-nav>Gallery</a>
+        <a href="#contact" class="nav-pill" data-nav>Contact</a>
+      </nav>
+
+      <a href="#booking" class="hidden lg:inline-flex btn-gold btn-ripple text-sm py-3 px-7">Book Appointment</a>
+
+      <button id="menu-btn"
+        class="lg:hidden z-10 w-11 h-11 rounded-full nav-glass flex items-center justify-center text-xl">
+        <i class="bx bx-menu"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div id="menu-overlay"></div>
+  <aside id="mobile-menu" class="px-8 py-10 flex flex-col">
+    <div class="flex justify-between items-center mb-14">
+      <span class="font-display text-2xl text-champagne">Menu</span>
+      <button id="menu-close" class="text-white text-3xl leading-none"><i class="bx bx-x"></i></button>
+    </div>
+    <nav class="flex flex-col gap-6 text-lg" id="mobile-nav">
+      <a href="#home" class="text-white/85 hover:text-champagne transition" data-nav-mobile>Home</a>
+      <a href="#about" class="text-white/85 hover:text-champagne transition" data-nav-mobile>About</a>
+      <button type="button" class="text-left text-white/85 hover:text-champagne transition"
+        id="mobile-bridal-services-toggle">Services</button>
+      <div class="pl-4 flex flex-col gap-3 text-sm text-white/70 hidden" id="mobile-bridal-services-menu">
+        <a href="bridal.html" class="hover:text-champagne transition">Bridal Makeup</a>
+        <a href="parlours.html" class="hover:text-champagne transition">Parlours</a>
+        <a href="tailoring.html" class="hover:text-champagne transition">Aari Work &amp; Tailoring</a>
+        <a href="fashion-designing.html" class="hover:text-champagne transition">Fashion Designing</a>
+        <a href="boutique.html" class="hover:text-champagne transition">Boutique</a>
+      </div>
+      <a href="#gallery" class="text-white/85 hover:text-champagne transition" data-nav-mobile>Gallery</a>
+      <a href="#contact" class="text-white/85 hover:text-champagne transition" data-nav-mobile>Contact</a>
+    </nav>
+    <a href="#booking" class="btn-gold text-center mt-12">Book Appointment</a>
+    <div class="mt-auto flex gap-5 text-white/70 text-xl pt-10">
+      <i class='bx bxl-instagram'></i><i class='bx bxl-facebook'></i><i class='bx bxl-whatsapp'></i>
+    </div>
+  </aside>
+
+  <div id="main-site" class="main-site">
+    <!-- ================= HERO ================= -->
+    <section id="home" class="relative">
+      <div id="hero">
+        <div id="hero-bg"></div>
+        <div class="hero-float floaty" style="width:220px;height:220px;top:12%;left:6%;"></div>
+        <div class="hero-float floaty" style="width:160px;height:160px;bottom:14%;right:8%;animation-delay:2s;"></div>
+        <div class="hero-float floaty" style="width:90px;height:90px;top:40%;right:18%;animation-delay:1s;"></div>
+
+        <div class="relative z-10 max-w-5xl mx-auto text-center px-6 pt-28">
+          <p class="hero-line text-champagne uppercase tracking-[.35em] text-xs md:text-sm mb-6 font-body">Luxury Bridal
+            Artistry &amp; Styling</p>
+          <h1 class="font-display text-white leading-[1.05] text-[2.6rem] md:text-6xl lg:text-7xl">
+            <span class="hero-line block">Akalya's</span>
+            <span class="hero-line block italic text-champagne">Bridal Studio</span>
+          </h1>
+          <p class="hero-line font-accent italic text-white/85 text-xl md:text-2xl mt-7">"Where Beauty Meets Elegance"
+          </p>
+          <p class="hero-line text-white/70 max-w-xl mx-auto mt-6 text-sm md:text-base leading-relaxed">
+            Bespoke bridal makeup, hair styling and draping crafted with premium products, gentle hands
+            and an artist's eye — so every bride feels unmistakably like herself, only luminous.
+          </p>
+          <div class="hero-line flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
+            <a href="#booking" class="btn-gold btn-ripple w-full sm:w-auto text-center">Book Appointment</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= ABOUT ================= -->
+    <section id="about" class="py-28 md:py-36 bg-ivory relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-16 items-center">
+
+        <div class="relative" data-aos="fade-right" data-aos-duration="900">
+          <div class="relative rounded-[28px] overflow-hidden shadow-2xl">
+            <img src="about.jpeg"
+              onerror="this.parentElement.style.background='linear-gradient(135deg,#D8B98A,#C89B6D)'; this.remove();"
+              alt="Akalya Bridal Studio team and beauty services" loading="lazy" class="w-full h-[520px] object-cover">
+          </div>
+          <!--<div class="glass-card absolute -bottom-8 -right-6 md:-right-10 rounded-2xl p-6 w-64">
+        <p class="font-display text-3xl text-rosegold">12+</p>
+        <p class="text-xs uppercase tracking-widest text-charcoal/60 mt-1">Years Perfecting Bridal Artistry</p> 
+      </div>-->
+        </div>
+
+        <div data-aos="fade-left" data-aos-duration="900">
+          <p class="text-rosegold uppercase tracking-[.3em] text-xs mb-4">About The Studio</p>
+          <h2 class="font-display text-4xl md:text-5xl leading-tight">Our <span
+              class="italic text-rosegold">Story</span></h2>
+          <div class="divider-orn my-7"></div>
+          <p class="text-charcoal/70 leading-relaxed mb-5">
+            With over 10 years of experience, Akalya Bridal Studio has been dedicated to enhancing beauty with
+            professional bridal makeover and beauty parlour services. Our passion is to make every bride feel
+            confident, elegant, and unforgettable on her special day through personalized beauty solutions.
+          </p>
+          <p class="text-charcoal/70 leading-relaxed mb-10">
+            Along with our beauty services, we also specialize in fashion designing and ladies’ tailoring, creating
+            custom outfits that perfectly match every client’s style and occasion. From bridal wear to designer
+            dresses, we combine creativity, craftsmanship, and attention to detail to bring your vision to life.
+          </p>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= GALLERY ================= -->
+    <section id="gallery" class="py-28 md:py-36 bg-white">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-12" data-aos="fade-up">
+          <p class="text-rosegold uppercase tracking-[.3em] text-xs mb-4">Our Work</p>
+          <h2 class="font-display text-4xl md:text-5xl">The Bridal Gallery</h2>
+          <div class="divider-orn mx-auto my-6"></div>
+          <p class="text-charcoal/60">A glimpse of real looks, real brides, real moments.</p>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-3 mb-12" id="gallery-filters">
+          <button class="gallery-filter-btn active" data-filter="all">All</button>
+          <button class="gallery-filter-btn" data-filter="bridal">Bridal</button>
+          <button class="gallery-filter-btn" data-filter="engagement">Engagement</button>
+          <button class="gallery-filter-btn" data-filter="hair">Hair &amp; Draping</button>
+          <button class="gallery-filter-btn" data-filter="party">Party</button>
+        </div>
+
+        <div class="masonry" id="gallery-grid"></div>
+      </div>
+    </section>
+
+    <div id="lightbox"><img src="" alt="Enlarged gallery photo"><button id="lightbox-close"
+        class="absolute top-6 right-8 text-white text-4xl">&times;</button></div>
+
+    <!-- ================= BOOKING ================= -->
+    <section id="booking" class="py-28 md:py-36 bg-charcoal relative overflow-hidden">
+      <div class="absolute inset-0 opacity-10"
+        style="background-image:radial-gradient(circle at 20% 20%, var(--champagne) 0, transparent 40%), radial-gradient(circle at 80% 80%, var(--rosegold) 0, transparent 40%);">
+      </div>
+      <div class="max-w-4xl mx-auto px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-14" data-aos="fade-up">
+          <p class="text-champagne uppercase tracking-[.3em] text-xs mb-4">Reserve Your Date</p>
+          <h2 class="font-display text-4xl md:text-5xl text-white">Book Your Appointment</h2>
+
+          <!-- Booking Open/Closed Badge -->
+          <div id="booking-badge-container" class="mt-4 flex justify-center">
+            <!-- Status badge will be injected here dynamically -->
+          </div>
+
+          <div class="divider-orn mx-auto my-6"></div>
+          <p class="text-white/60">Tell us a little about your day — we'll get back within 24 hours with availability
+            and a quote.</p>
+        </div>
+
+        <form id="booking-form"
+          class="glass-card !bg-white/5 !border-white/10 rounded-[28px] p-8 md:p-12 grid md:grid-cols-2 gap-x-8 gap-y-8"
+          novalidate>
+          <!-- Full Name -->
+          <div class="form-field md:col-span-1">
+            <input type="text" id="b-name" required placeholder=" ">
+            <label>Full Name</label>
+            <span class="underline-bar"></span>
+            <span class="form-error-msg">Please enter your name</span>
+          </div>
+
+          <!-- Phone Number -->
+          <div class="form-field md:col-span-1">
+            <input type="tel" id="b-phone" required placeholder=" " pattern="[0-9]{10}">
+            <label>Phone Number</label>
+            <span class="underline-bar"></span>
+            <span class="form-error-msg">Please enter a valid 10-digit phone number</span>
+          </div>
+
+          <!-- Email Address -->
+          <div class="form-field md:col-span-1">
+            <input type="email" id="b-email" placeholder=" ">
+            <label>Email Address</label>
+            <span class="underline-bar"></span>
+            <span class="form-error-msg">Please enter a valid email</span>
+          </div>
+
+          <!-- Event Date -->
+          <div class="form-field md:col-span-1">
+            <input type="date" id="b-date" required>
+            <label>Event Date</label>
+            <span class="underline-bar"></span>
+            <span class="form-error-msg">Please select an event date</span>
+          </div>
+
+          <!-- Service Dropdown -->
+          <div class="form-field md:col-span-2">
+            <select id="b-service" required>
+              <option value="">Select a service</option>
+              <option>Bridal Makeup</option>
+              <option>Parlours</option>
+              <option>Aari Work &amp; Tailoring</option>
+              <option>Fashion Designing</option>
+              <option>Boutique</option>
+              <option>Others</option>
+            </select>
+            <label>Service Required</label>
+            <span class="underline-bar"></span>
+            <span class="form-error-msg">Please select a service</span>
+          </div>
+
+          <!-- Event Details -->
+          <div class="form-field md:col-span-2">
+            <textarea id="b-message" rows="3" placeholder=" " class="resize-none"></textarea>
+            <label>Event Details (optional)</label>
+            <span class="underline-bar"></span>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="md:col-span-2 flex flex-col items-center gap-4 pt-4">
+            <button type="submit" id="booking-submit-btn" class="btn-gold btn-ripple w-full md:w-auto px-16">Request
+              Appointment</button>
+            <p id="form-error" class="text-red-400 text-sm hidden">⚠ Please fill in all required fields</p>
+            <p id="form-success" class="text-champagne text-sm hidden">✓ Opening WhatsApp with your appointment
+              request...</p>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+    <section id="contact" class="py-28 md:py-36 bg-ivory">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up">
+          <p class="text-rosegold uppercase tracking-[.3em] text-xs mb-4">Visit The Studio</p>
+          <h2 class="font-display text-4xl md:text-5xl">Get In Touch</h2>
+          <div class="divider-orn mx-auto my-6"></div>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-10">
+          <div class="grid sm:grid-cols-2 gap-6 content-start" data-aos="fade-right">
+            <div class="glass-card rounded-2xl p-7">
+              <i class='bx bx-map text-rosegold text-3xl mb-4'></i>
+              <p class="font-medium mb-1">Studio Address</p>
+              <p class="text-sm text-charcoal/60">The Akalya's Bridal Studio is located on<br>Eriyur Bus
+                Stop,<br>Nagamarai-Pennagaram Road,<br>Dharmapuri District 636810</p>
+            </div>
+            <div class="glass-card rounded-2xl p-7">
+              <i class='bx bx-phone-call text-rosegold text-3xl mb-4'></i>
+              <p class="font-medium mb-1">Call Us</p>
+              <p class="text-sm text-charcoal/60">+91 93607 28730</p>
+            </div>
+            <div class="glass-card rounded-2xl p-7">
+              <i class='bx bx-envelope text-rosegold text-3xl mb-4'></i>
+              <p class="font-medium mb-1">Email</p>
+              <p class="text-sm text-charcoal/60"><a href="mailto:akalyasbridalstudio@gmail.com"
+                  class="hover:text-rosegold transition-colors">akalyasbridalstudio@gmail.com</a></p>
+            </div>
+            <div class="glass-card rounded-2xl p-7">
+              <i class='bx bx-time-five text-rosegold text-3xl mb-4'></i>
+              <p class="font-medium mb-1">Working Hours</p>
+              <p class="text-sm text-charcoal/60">Mon – Sat: 9:00 AM – 8:00 PM (IST)</p>
+            </div>
+            <div class="sm:col-span-2 flex flex-col sm:flex-row gap-4 mt-2">
+              <a href="https://wa.me/919360728730" target="_blank" rel="noopener"
+                class="btn-gold btn-ripple text-center flex-1 flex items-center justify-center gap-2">
+                <i class='bx bxl-whatsapp text-lg'></i> WhatsApp Us
+              </a>
+              <a href="tel:+919360728730" class="btn-outline text-center flex-1 flex items-center justify-center gap-2">
+                <i class='bx bx-phone text-lg'></i> Call Now
+              </a>
+            </div>
+          </div>
+
+          <div class="rounded-[28px] overflow-hidden shadow-xl min-h-[420px]" data-aos="fade-left">
+            <iframe
+              src="https://www.google.com/maps?q=Eriyur%20Bus%20Stop%2C%20Nagamarai-Pennagaram%20Road%2C%20Dharmapuri%20District%20636810&output=embed"
+              width="100%" height="100%" style="min-height:420px;border:0;" allowfullscreen loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade" title="Akalya's Bridal Studio location map"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="bg-charcoal text-white/70 pt-20 pb-8 relative">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8 grid md:grid-cols-2 gap-12 lg:gap-24">
+        <div>
+          <p class="font-display text-2xl text-white mb-4"><span class="text-champagne">A</span>kalya's Bridal Studio
+          </p>
+          <p class="text-sm leading-relaxed text-white/50 mb-6">Luxury bridal makeup and styling, crafted with premium
+            products and personal care — because every bride deserves to feel unmistakably beautiful.</p>
+
+        </div>
+
+        <div>
+          <p class="font-display text-lg text-white mb-5">Quick Links</p>
+          <ul class="space-y-3 text-sm">
+            <li><a href="#about" class="link-underline">About Us</a></li>
+            <li><a href="#services" class="link-underline">Services</a></li>
+            <li><a href="#gallery" class="link-underline">Gallery</a></li>
+            <li><a href="#contact" class="link-underline">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div
+        class="max-w-7xl mx-auto px-6 lg:px-8 mt-14 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-white/40 text-center md:text-left">
+        <p>© <span id="year"></span> Akalya's Bridal Studio. All rights reserved.</p>
+        <p class="text-champagne/80 font-medium tracking-wide">This website is currently under development</p>
+        <p class="md:text-right">Crafted with care, for brides everywhere.</p>
+      </div>
+    </footer>
+  </div>
+
+  <section id="bridal-makeup" class="bridal-view">
+    <div class="bridal-shell">
+      <div class="bridal-hero">
+        <button id="back-home-btn" class="btn-outline mb-6">← Back to Home</button>
+        <p class="text-rosegold uppercase tracking-[.3em] text-xs mb-4">Luxury Bridal Beauty</p>
+        <h2 class="font-display text-4xl md:text-5xl">Bridal Makeup Services</h2>
+        <p class="text-charcoal/70 mt-4 max-w-2xl">A refined collection of bridal beauty services designed to glow
+          beautifully in every light, from close-up portraits to grand celebrations.</p>
+      </div>
+
+      <div class="grid gap-6 p-6 md:p-8 lg:grid-cols-2 xl:grid-cols-4">
+        <article class="service-card">
+          <div class="service-icon"><i class='bx bx-sun'></i></div>
+          <h3 class="font-display text-xl mb-2">HD Makeup</h3>
+          <p class="text-sm text-charcoal/70">High-definition finish with a smooth, polished glow that looks flawless in
+            every photo.</p>
+          <div class="service-card-actions">
+            <a href="#booking" class="btn-service-book"><i class="bx bx-calendar-check"></i> Book Studio Visit</a>
+            <a href="https://wa.me/919360728730?text=Hi%2C%20I%27m%20interested%20in%20your%20HD%20Makeup.%20I%27d%20like%20to%20know%20more%20about%20the%20service%20and%20pricing." target="_blank" rel="noopener noreferrer" class="btn-service-wa"><i class="bx bxl-whatsapp"></i> Ask on WhatsApp</a>
+          </div>
+        </article>
+        <article class="service-card">
+          <div class="service-icon"><i class='bx bx-droplet'></i></div>
+          <h3 class="font-display text-xl mb-2">Waterproof Makeup</h3>
+          <p class="text-sm text-charcoal/70">Long-lasting, smudge-resistant makeup that stays fresh through tears,
+            humidity, and celebration.</p>
+          <div class="service-card-actions">
+            <a href="#booking" class="btn-service-book"><i class="bx bx-calendar-check"></i> Book Studio Visit</a>
+            <a href="https://wa.me/919360728730?text=Hi%2C%20I%27m%20interested%20in%20your%20Waterproof%20Makeup.%20I%27d%20like%20to%20know%20more%20about%20the%20service%20and%20pricing." target="_blank" rel="noopener noreferrer" class="btn-service-wa"><i class="bx bxl-whatsapp"></i> Ask on WhatsApp</a>
+          </div>
+        </article>
+        <article class="service-card">
+          <div class="service-icon"><i class='bx bx-wind'></i></div>
+          <h3 class="font-display text-xl mb-2">Sweat-proof Makeup</h3>
+          <p class="text-sm text-charcoal/70">Comfortable, resilient makeup designed for warm weather and energetic
+            events.</p>
+          <div class="service-card-actions">
+            <a href="#booking" class="btn-service-book"><i class="bx bx-calendar-check"></i> Book Studio Visit</a>
+            <a href="https://wa.me/919360728730?text=Hi%2C%20I%27m%20interested%20in%20your%20Sweat-proof%20Makeup.%20I%27d%20like%20to%20know%20more%20about%20the%20service%20and%20pricing." target="_blank" rel="noopener noreferrer" class="btn-service-wa"><i class="bx bxl-whatsapp"></i> Ask on WhatsApp</a>
+          </div>
+        </article>
+        <article class="service-card">
+          <div class="service-icon"><i class='bx bx-heart'></i></div>
+          <h3 class="font-display text-xl mb-2">Classic Look Makeup</h3>
+          <p class="text-sm text-charcoal/70">Timeless elegance with soft tones, graceful shaping, and a natural bridal
+            finish.</p>
+          <div class="service-card-actions">
+            <a href="#booking" class="btn-service-book"><i class="bx bx-calendar-check"></i> Book Studio Visit</a>
+            <a href="https://wa.me/919360728730?text=Hi%2C%20I%27m%20interested%20in%20your%20Classic%20Look%20Makeup.%20I%27d%20like%20to%20know%20more%20about%20the%20service%20and%20pricing." target="_blank" rel="noopener noreferrer" class="btn-service-wa"><i class="bx bxl-whatsapp"></i> Ask on WhatsApp</a>
+          </div>
+        </article>
+        <article class="service-card">
+          <div class="service-icon"><i class='bx bx-star'></i></div>
+          <h3 class="font-display text-xl mb-2">Glam Look Makeup</h3>
+          <p class="text-sm text-charcoal/70">Bold and glamorous artistry with sculpted features and luminous shine.</p>
+          <div class="service-card-actions">
+            <a href="#booking" class="btn-service-book"><i class="bx bx-calendar-check"></i> Book Studio Visit</a>
+            <a href="https://wa.me/919360728730?text=Hi%2C%20I%27m%20interested%20in%20your%20Glam%20Look%20Makeup.%20I%27d%20like%20to%20know%20more%20about%20the%20service%20and%20pricing." target="_blank" rel="noopener noreferrer" class="btn-service-wa"><i class="bx bxl-whatsapp"></i> Ask on WhatsApp</a>
+          </div>
+        </article>
+        <article class="service-card">
+          <div class="service-icon"><i class='bx bx-brush'></i></div>
+          <h3 class="font-display text-xl mb-2">Airbrush Makeup</h3>
+          <p class="text-sm text-charcoal/70">Silky smooth, lightweight coverage that feels fresh and looks polished all
+            day.</p>
+          <div class="service-card-actions">
+            <a href="#booking" class="btn-service-book"><i class="bx bx-calendar-check"></i> Book Studio Visit</a>
+            <a href="https://wa.me/919360728730?text=Hi%2C%20I%27m%20interested%20in%20your%20Airbrush%20Makeup.%20I%27d%20like%20to%20know%20more%20about%20the%20service%20and%20pricing." target="_blank" rel="noopener noreferrer" class="btn-service-wa"><i class="bx bxl-whatsapp"></i> Ask on WhatsApp</a>
+          </div>
+        </article>
+        <article class="service-card">
+          <div class="service-icon"><i class='bx bx-shine'></i></div>
+          <h3 class="font-display text-xl mb-2">Ultra Residence Makeup</h3>
+          <p class="text-sm text-charcoal/70">A refined high-precision look that adds radiance and depth to every bridal
+            portrait.</p>
+          <div class="service-card-actions">
+            <a href="#booking" class="btn-service-book"><i class="bx bx-calendar-check"></i> Book Studio Visit</a>
+            <a href="https://wa.me/919360728730?text=Hi%2C%20I%27m%20interested%20in%20your%20Ultra%20Residence%20Makeup.%20I%27d%20like%20to%20know%20more%20about%20the%20service%20and%20pricing." target="_blank" rel="noopener noreferrer" class="btn-service-wa"><i class="bx bxl-whatsapp"></i> Ask on WhatsApp</a>
+          </div>
+        </article>
+        <article class="service-card">
+          <div class="service-icon"><i class='bx bx-palette'></i></div>
+          <h3 class="font-display text-xl mb-2">Underpainting Makeup</h3>
+          <p class="text-sm text-charcoal/70">Careful base layering that creates dimension, depth, and a beautifully
+            blended complexion.</p>
+          <div class="service-card-actions">
+            <a href="#booking" class="btn-service-book"><i class="bx bx-calendar-check"></i> Book Studio Visit</a>
+            <a href="https://wa.me/919360728730?text=Hi%2C%20I%27m%20interested%20in%20your%20Underpainting%20Makeup.%20I%27d%20like%20to%20know%20more%20about%20the%20service%20and%20pricing." target="_blank" rel="noopener noreferrer" class="btn-service-wa"><i class="bx bxl-whatsapp"></i> Ask on WhatsApp</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Instagram floating action button added above existing WhatsApp button -->
+  <a href="https://www.instagram.com/akalya_mekover_artist?igsh=c2Nxa3F5YmJlbHN1" target="_blank"
+    rel="noopener noreferrer" class="instagram-fab" aria-label="Visit Instagram profile"><i
+      class='bx bxl-instagram'></i></a>
+  <a href="https://wa.me/919360728730?text=Hello%20Akalya%27s%20Bridal%20Studio%2C%20I%20would%20like%20to%20book%20a%20bridal%20makeup%20appointment."
+    target="_blank" rel="noopener noreferrer" class="whatsapp-fab" aria-label="Chat on WhatsApp"><i
+      class='bx bxl-whatsapp'></i></a>
+  <button id="backToTop" aria-label="Back to top"><i class='bx bx-up-arrow-alt'></i></button>
+
+  <!-- ================= SCRIPTS ================= -->
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!-- ================= GALLERY INTEGRATION ================= -->
+  <script src="main.js"></script>
+
+  <script>
+    /* ================= SWIPER ================= */
+    const testiSwiper = new Swiper('.testiSwiper', {
+      loop: true,
+      autoplay: { delay: 4500, disableOnInteraction: false },
+      spaceBetween: 24,
+      slidesPerView: 1,
+      navigation: { nextEl: '.testi-next', prevEl: '.testi-prev' },
+      breakpoints: { 768: { slidesPerView: 2 }, 1200: { slidesPerView: 3 } },
+    });
+
+    /* ================= LOADER ================= */
+    window.addEventListener('load', () => {
+      if (sessionStorage.getItem('visited')) {
+        playHeroIntro();
+      } else {
+        sessionStorage.setItem('visited', 'true');
+        gsap.to('#loader .mono', { opacity: 1, duration: .8, ease: 'power2.out' });
+        setTimeout(() => {
+          const loader = document.getElementById('loader');
+          if (loader) loader.classList.add('done');
+          playHeroIntro();
+        }, 1500);
+      }
+    });
+
+    /* ================= LENIS SMOOTH SCROLL ================= */
+    const lenis = new Lenis({ duration: 1.15, smoothWheel: true });
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+    lenis.on('scroll', () => ScrollTrigger.update());
+    gsap.ticker.add((time) => lenis.raf(time * 1000));
+    gsap.ticker.lagSmoothing(0);
+
+    /* ================= GSAP / SCROLLTRIGGER ================= */
+    gsap.registerPlugin(ScrollTrigger);
+    AOS.init({ once: true, duration: 800, easing: 'ease-out-cubic' });
+
+    function playHeroIntro() {
+      gsap.set('.hero-line', { opacity: 0, y: 40 });
+      gsap.to('.hero-line', { opacity: 1, y: 0, duration: 1, ease: 'power3.out', stagger: .12, delay: .1 });
+    }
+
+    /* Hero parallax on scroll */
+    gsap.to('#hero-bg', {
+      yPercent: 15, ease: 'none',
+      scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true }
+    });
+
+    /* Hero parallax on mouse move */
+    const heroSection = document.getElementById('hero');
+    heroSection.addEventListener('mousemove', (e) => {
+      const x = (e.clientX / window.innerWidth - .5) * 20;
+      const y = (e.clientY / window.innerHeight - .5) * 20;
+      gsap.to('#hero-bg', { x: x, y: y, duration: 1, ease: 'power2.out' });
+      gsap.to('.hero-float', { x: x * 1.5, y: y * 1.5, duration: 1.4, ease: 'power2.out', stagger: .05 });
+    });
+
+    /* ================= COUNTERS ================= */
+    const counters = document.querySelectorAll('.counter-num');
+    counters.forEach(el => {
+      ScrollTrigger.create({
+        trigger: el, start: 'top 85%', once: true,
+        onEnter: () => {
+          const target = +el.dataset.count;
+          gsap.to(el, {
+            duration: 2, ease: 'power1.out',
+            onUpdate: function () {
+              el.textContent = Math.floor(this.progress() * target).toLocaleString();
+            },
+            onComplete: () => el.textContent = target.toLocaleString() + '+',
+          });
+        }
+      });
+    });
+
+    /* ================= SCROLL PROGRESS + NAVBAR + BACK TO TOP ================= */
+    const navbar = document.getElementById('navbar');
+    const progressBar = document.getElementById('scroll-progress');
+    const backToTop = document.getElementById('backToTop');
+
+    function onScroll() {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      progressBar.style.width = (scrollTop / docHeight * 100) + '%';
+      navbar.classList.toggle('scrolled', scrollTop > 60);
+      backToTop.classList.toggle('show', scrollTop > 400);
+    }
+    window.addEventListener('scroll', onScroll);
+    lenis.on('scroll', onScroll);
+    backToTop.addEventListener('click', () => lenis.scrollTo(0, { duration: 1.2 }));
+
+    /* Dynamic bridal view navigation */
+    const mainSite = document.getElementById('main-site');
+    const bridalView = document.getElementById('bridal-makeup');
+    const backHomeBtn = document.getElementById('back-home-btn');
+
+    function showBridalView() {
+      if (mainSite) mainSite.classList.add('is-hidden');
+      if (bridalView) bridalView.classList.add('active');
+      document.querySelectorAll('[data-nav]').forEach(p => p.classList.remove('active'));
+      if (window.innerWidth <= 1023) closeMobileMenu();
+    }
+
+    function showHomeView() {
+      if (mainSite) mainSite.classList.remove('is-hidden');
+      if (bridalView) bridalView.classList.remove('active');
+      document.querySelectorAll('[data-nav]').forEach(p => p.classList.remove('active'));
+      const homeLink = document.querySelector('[data-nav][href="#home"]');
+      if (homeLink) homeLink.classList.add('active');
+      if (window.innerWidth <= 1023) closeMobileMenu();
+      setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 80);
+    }
+
+    if (backHomeBtn) backHomeBtn.addEventListener('click', showHomeView);
+
+    document.querySelectorAll('a[data-open-bridal]').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        showBridalView();
+        setTimeout(() => {
+          bridalView?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 60);
+      });
+    });
+
+    /* Smooth-scroll anchor links via Lenis */
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        if (a.hasAttribute('data-open-bridal')) return;
+        const id = a.getAttribute('href');
+        if (id.length > 1 && document.querySelector(id)) {
+          e.preventDefault();
+          if (id === '#home') showHomeView();
+          else if (id === '#bridal-makeup') showBridalView();
+          else lenis.scrollTo(id, { offset: -90, duration: 1.1 });
+          closeMobileMenu();
+        }
+      });
+    });
+
+    /* ================= BRIDAL SERVICES DROPDOWN ================= */
+    const bridalDropdown = document.getElementById('bridal-services-dropdown');
+    const bridalToggle = document.getElementById('bridal-services-toggle');
+    const bridalMenu = document.getElementById('bridal-services-menu');
+    const mobileBridalToggle = document.getElementById('mobile-bridal-services-toggle');
+    const mobileBridalMenu = document.getElementById('mobile-bridal-services-menu');
+
+    function closeBridalDropdown() { if (bridalDropdown) bridalDropdown.classList.remove('open'); }
+    if (bridalToggle && bridalMenu) {
+      bridalToggle.addEventListener('click', e => {
+        e.stopPropagation();
+        bridalDropdown.classList.toggle('open');
+      });
+      bridalMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => closeBridalDropdown());
+      });
+    }
+    document.addEventListener('click', e => {
+      if (bridalDropdown && !bridalDropdown.contains(e.target)) closeBridalDropdown();
+    });
+    if (mobileBridalToggle && mobileBridalMenu) {
+      mobileBridalToggle.addEventListener('click', () => mobileBridalMenu.classList.toggle('hidden'));
+    }
+
+    /* ================= ACTIVE NAV LINK ================= */
+    const sections = ['home', 'about', 'services', 'gallery', 'contact'];
+    const navPills = document.querySelectorAll('[data-nav]');
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navPills.forEach(p => p.classList.remove('active'));
+          const active = document.querySelector(`[data-nav][href="#${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    sections.forEach(id => { const el = document.getElementById(id); if (el) sectionObserver.observe(el); });
+
+    /* ================= MOBILE MENU ================= */
+    const menuBtn = document.getElementById('menu-btn');
+    const menuClose = document.getElementById('menu-close');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuOverlay = document.getElementById('menu-overlay');
+    function openMobileMenu() { mobileMenu.classList.add('open'); menuOverlay.classList.add('show'); }
+    function closeMobileMenu() { mobileMenu.classList.remove('open'); menuOverlay.classList.remove('show'); }
+    menuBtn.addEventListener('click', openMobileMenu);
+    menuClose.addEventListener('click', closeMobileMenu);
+    menuOverlay.addEventListener('click', closeMobileMenu);
+
+    /* ================= CURSOR GLOW ================= */
+    const glow = document.getElementById('cursor-glow');
+    window.addEventListener('mousemove', e => {
+      glow.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%,-50%)`;
+    });
+
+    /* ================= BUTTON RIPPLE ================= */
+    document.querySelectorAll('.btn-ripple').forEach(btn => {
+      btn.addEventListener('click', function (e) {
+        const span = document.createElement('span');
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        span.className = 'ripple-span';
+        span.style.width = span.style.height = size + 'px';
+        span.style.left = (e.clientX - rect.left - size / 2) + 'px';
+        span.style.top = (e.clientY - rect.top - size / 2) + 'px';
+        this.appendChild(span);
+        setTimeout(() => span.remove(), 650);
+      });
+    });
+
+  </script>
+</body>
+
+</html>
